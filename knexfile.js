@@ -1,4 +1,5 @@
 // Update with your config settings.
+const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/dads";
 
 module.exports = {
 
