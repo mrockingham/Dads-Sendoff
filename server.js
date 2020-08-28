@@ -19,15 +19,13 @@ server.use('/api/comments', commentrouter)
 server.use('/api/stories', storiesrouter)
 server.use('/api/gallery', galleryrouter)
 
-
+server.options('/api/images', cors())
 server .get('/', (req, res) =>{
     res.send('server is up')
 })
-server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
 
+
+server.options('/api/images', cors())
 server.get('/api/images', async (req,res)=>{
     const {resources} = await cloudinary.search.expression
     ('folder:mike')
@@ -37,6 +35,7 @@ server.get('/api/images', async (req,res)=>{
     const publicIDs = resources.map( file => file.public_id)
     res.send(publicIDs)
 })
+server.options('/api/upload', cors())
 server.post('/api/upload', async (req,res)=>{
     try {
         const fileStr = req.body.data;
