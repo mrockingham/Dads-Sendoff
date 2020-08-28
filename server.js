@@ -14,6 +14,11 @@ server.use(express.json({ limit: '50mb'}));
 server.use(morgan('dev'))
 server.use(express.urlencoded({limit: '50mb', extended: true}))
 
+server.use('/api/comments', commentrouter)
+server.use('/api/stories', storiesrouter)
+server.use('/api/gallery', galleryrouter)
+
+
 server .get('/', (req, res) =>{
     res.send('server is up')
 })
@@ -40,9 +45,7 @@ server.post('/api/upload', async (req,res)=>{
 })
 
 
-server.use('/api/comments', commentrouter)
-server.use('/api/stories', storiesrouter)
-server.use('/api/gallery', galleryrouter)
+
 
 
 module.exports = server
