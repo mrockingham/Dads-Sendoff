@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const helmet = require('helmet')
+
 const morgan = require('morgan')
 const {cloudinary} = require('./utils/cloudinary')
 const commentrouter = require('./comment/comment-router')
@@ -8,8 +8,8 @@ const storiesrouter = require('./stories/stories.router')
 const galleryrouter = require('./photo/photo.router')
 const server = express()
 
-server.use(helmet());
 server.use(cors());
+
 server.use(express.json({ limit: '50mb'}));
 server.use(morgan('dev'))
 server.use(express.urlencoded({limit: '50mb', extended: true}))
