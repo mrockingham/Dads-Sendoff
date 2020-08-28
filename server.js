@@ -8,6 +8,7 @@ const storiesrouter = require('./stories/stories.router')
 const galleryrouter = require('./photo/photo.router')
 const server = express()
 
+server.options('*', cors())
 server.use(cors());
 
 server.use(express.json({ limit: '50mb'}));
