@@ -22,6 +22,11 @@ server.use('/api/gallery', galleryrouter)
 server .get('/', (req, res) =>{
     res.send('server is up')
 })
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
 server.get('/api/images', async (req,res)=>{
     const {resources} = await cloudinary.search.expression
     ('folder:mike')
